@@ -44,7 +44,7 @@ const Location = () => {
             <h3 className="font-semibold text-gray-900 mb-4 text-base sm:text-lg">Harita Konumu</h3>
             <div className="relative w-full overflow-hidden rounded-lg" style={{ paddingBottom: '75%' }}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4310.509156367356!2d39.524183490657585!3d40.014645058977024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x407aad1c17141a85%3A0x76ce732fc8c1cdaa!2sMahmatl%C4%B1%20Cami!5e1!3m2!1str!2str!4v1763823520546!5m2!1str!2str"
+                src="https://maps.app.goo.gl/Q7tVwPpSe6obvEvx7"
                 className="absolute top-0 left-0 w-full h-full border-0"
                 allowFullScreen
                 loading="lazy"
