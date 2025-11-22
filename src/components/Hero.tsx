@@ -11,18 +11,14 @@ const Hero = () => {
   return (
     <section
       id="anasayfa"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-stone-50 to-secondary-50 pt-16"
+      className="relative min-h-screen flex items-center justify-center pt-16 bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `url('/69129735_1197565680447583_3429571234562572288_n.jpg')`
+      }}
     >
-      <div className="absolute inset-0 overflow-hidden opacity-10">
-        <div className="absolute top-20 left-10 text-primary-700">
-          <Mountain size={120} />
-        </div>
-        <div className="absolute bottom-20 right-10 text-primary-700">
-          <Mountain size={150} />
-        </div>
-      </div>
+      <div className="absolute inset-0 bg-white/40 backdrop-blur-xl"></div>
 
-      <div className="relative max-w-[1000px] mx-auto px-4 sm:px-6 text-center">
+      <div className="relative max-w-2xl mx-auto px-4 sm:px-6 text-center">
         <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-primary-400 rounded-full mb-6 sm:mb-8">
           <Mountain className="text-white" size={40} />
         </div>
