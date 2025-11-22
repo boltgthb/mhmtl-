@@ -1,4 +1,4 @@
-import { Mountain } from 'lucide-react';
+import { Mountain, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
   const scrollToSection = (href: string) => {
@@ -46,6 +46,16 @@ const Hero = () => {
             className="w-full sm:w-auto px-8 py-3 bg-white text-primary-700 border-2 border-primary-400 rounded-lg font-medium hover:bg-primary-50 transition-colors"
           >
             Galeriye Göz At
+          </button>
+        </div>
+
+        <div className="mt-12 sm:mt-16">
+          <button
+            onClick={() => scrollToSection('#hakkinda')}
+            className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/60 hover:bg-white/80 transition-colors backdrop-blur-sm hover:shadow-lg animate-bounce"
+            aria-label="Aşağıya kaydır"
+          >
+            <ChevronDown className="text-primary-700" size={24} />
           </button>
         </div>
       </div>
