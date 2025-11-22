@@ -16,7 +16,7 @@ const Hero = () => {
         backgroundImage: `url('/69129735_1197565680447583_3429571234562572288_n.jpg')`
       }}
     >
-      <div className="absolute inset-0 bg-white/40 backdrop-blur-xl"></div>
+      <div className="absolute inset-0 bg-white/40 backdrop-blur-x3"></div>
 
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6 text-center">
         <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-primary-400 rounded-full mb-6 sm:mb-8">
