@@ -1,0 +1,76 @@
+import { Calendar } from 'lucide-react';
+
+const Timeline = () => {
+  const timelineData = [
+    {
+      period: "1960'lar",
+      description:
+        "Eski kerpiç evlerin ve hayvancılığın ağırlıkta olduğu dönem. Elektrik, yol ve ulaşım imkânları sınırlıdır.",
+    },
+    {
+      period: "1980'ler",
+      description:
+        "Yurt içi ve yurt dışına göçlerin arttığı, köyden şehirlere çalışmaya gidilen yıllar.",
+    },
+    {
+      period: "2000'ler",
+      description:
+        "Telefon, internet ve yeni yolların yapılmasıyla iletişimin hızlandığı dönem.",
+    },
+    {
+      period: "Günümüz",
+      description:
+        "Yeni evler, yenilenen yollar, araçların artması ve gurbette yaşayan Mahmatlılıların köyle bağını koruduğu dönem.",
+    },
+  ];
+
+  return (
+    <section id="gecmisten-bugune" className="py-16 sm:py-20 bg-white">
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-2">
+          Geçmişten Bugüne
+        </h2>
+        <p className="text-center text-gray-600 mb-4">Mahmatlı'nın Zaman İçindeki Değişimi</p>
+        <div className="w-20 h-1 bg-primary-400 mx-auto mb-10 sm:mb-14"></div>
+
+        <div className="relative">
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary-100"></div>
+
+          <div className="space-y-8 sm:space-y-12">
+            {timelineData.map((item, index) => (
+              <div
+                key={index}
+                className={`relative flex flex-col md:flex-row items-center ${
+                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}
+              >
+                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
+                  <div className="bg-primary-50 rounded-lg p-5 sm:p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div className="flex items-center mb-3 md:justify-end">
+                      <Calendar className="text-primary-700 mr-2" size={20} />
+                      <h3 className="text-xl font-bold text-primary-700">{item.period}</h3>
+                    </div>
+                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">{item.description}</p>
+                  </div>
+                </div>
+
+                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary-400 rounded-full border-4 border-white shadow-md z-10"></div>
+
+                <div className="w-full md:w-5/12"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-10 sm:mt-14 bg-stone-50 rounded-xl p-6 sm:p-8 text-center">
+          <p className="text-gray-700 leading-relaxed text-base sm:text-lg">
+            Bu site, Mahmatlı Köyü'nün dününü ve bugününü kayıt altına alarak gelecek nesillere aktarmak için
+            hazırlanmıştır.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Timeline;
