@@ -1,28 +1,62 @@
 import { Calendar } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const Timeline = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const timelineData = [
     {
       period: "1960'lar",
       description:
         "Eski kerpiç evlerin ve hayvancılığın ağırlıkta olduğu dönem. Elektrik, yol ve ulaşım imkânları sınırlıdır.",
+      id: 'timeline-1960s',
     },
     {
       period: "1980'ler",
       description:
         "Yurt içi ve yurt dışına göçlerin arttığı, köyden şehirlere çalışmaya gidilen yıllar.",
+      id: 'timeline-1980s',
     },
     {
       period: "2000'ler",
       description:
         "Telefon, internet ve yeni yolların yapılmasıyla iletişimin hızlandığı dönem.",
+      id: 'timeline-2000s',
     },
     {
       period: "Günümüz",
       description:
         "Yeni evler, yenilenen yollar, araçların artması ve gurbette yaşayan Mahmatlılıların köyle bağını koruduğu dönem.",
+      id: 'timeline-today',
     },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const timelineElements = timelineData.map(item =>
+        document.getElementById(item.id)
+      );
+
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      timelineElements.forEach((element, index) => {
+        if (!element) return;
+        const rect = element.getBoundingClientRect();
+        const distance = Math.abs(rect.top - window.innerHeight / 2);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveIndex(closestIndex);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <section id="gecmisten-bugune" className="py-16 sm:py-20 bg-white">
@@ -40,6 +74,7 @@ const Timeline = () => {
             {timelineData.map((item, index) => (
               <div
                 key={index}
+                id={item.id}
                 className={`relative flex flex-col md:flex-row items-center ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
@@ -54,7 +89,13 @@ const Timeline = () => {
                   </div>
                 </div>
 
-                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary-400 rounded-full border-4 border-white shadow-md z-10"></div>
+                <div
+                  className={`hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-4 border-white shadow-md z-10 transition-all duration-300 ${
+                    activeIndex === index
+                      ? 'bg-primary-400 scale-125'
+                      : 'bg-primary-200 scale-100'
+                  }`}
+                ></div>
 
                 <div className="w-full md:w-5/12"></div>
               </div>
