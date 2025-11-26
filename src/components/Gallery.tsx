@@ -11,7 +11,7 @@ const Gallery = () => {
   const galleryItems = [
     { id: 1, caption: 'Köy Manzarası', images: ['/mahmatli-koy-manzarasi.JPG'] },
     { id: 2, caption: 'Kışın Mahmatlı', images: ['/kisin-mahmatli-min.JPG', '/kisin-mahmatli-manzarasi.JPG'] },
-    { id: 3, caption: 'Yayla Yolu', images: ['IMAGE_URL_PLACEHOLDER_3'] },
+    { id: 3, caption: 'Dedenin Çayırı 4. Köprü', images: ['IMAGE_URL_PLACEHOLDER_3'] },
     { id: 4, caption: 'Köy Meydanı', images: ['IMAGE_URL_PLACEHOLDER_4'] },
     { id: 5, caption: 'Evlerden Görünüm', images: ['IMAGE_URL_PLACEHOLDER_5'] },
     { id: 6, caption: 'Doğal Yaşam', images: ['IMAGE_URL_PLACEHOLDER_6'] },
