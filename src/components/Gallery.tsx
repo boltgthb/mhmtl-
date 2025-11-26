@@ -12,7 +12,7 @@ const Gallery = () => {
     { id: 1, caption: 'Köy Manzarası', images: ['/mahmatli-koyu-fotograf.jpg', '/mahmatli-koy-manzarasi.JPG'] },
     { id: 2, caption: 'Kışın Mahmatlı', images: ['/kisin-mahmatli-min.JPG', '/kisin-mahmatli-manzarasi.JPG'] },
     { id: 3, caption: 'Dedenin Çayırı 4. Köprü', images: ['/mahmatli-koyu-fotograflari.JPG'] },
-    { id: 4, caption: 'Harmanda Tek Kale Futbol', images: ['IMAGE_URL_PLACEHOLDER_4'] },
+    { id: 4, caption: 'Harmanda Tek Kale Futbol', images: ['/kelkit-mahmatli-koyu.JPG'] },
     { id: 5, caption: 'Evlerden Görünüm', images: ['IMAGE_URL_PLACEHOLDER_5'] },
     { id: 6, caption: 'Doğal Yaşam', images: ['IMAGE_URL_PLACEHOLDER_6'] },
   ];
