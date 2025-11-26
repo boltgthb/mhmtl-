@@ -1,4 +1,4 @@
-import { Image, X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Image, X, ZoomIn, ChevronLeft, ChevronRight, Loader } from 'lucide-react';
 import { useState } from 'react';
 
 const Gallery = () => {
@@ -6,14 +6,15 @@ const Gallery = () => {
   const [zoom, setZoom] = useState(1);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [loadingImages, setLoadingImages] = useState<{ [key: number]: boolean }>({});
 
   const galleryItems = [
     { id: 1, caption: 'Köy Manzarası', images: ['/mahmatli-koy-manzarasi.JPG'] },
     { id: 2, caption: 'Kışın Mahmatlı', images: ['/kisin-mahmatli-min.JPG', '/kisin-mahmatli-manzarasi.JPG'] },
-    { id: 3, caption: 'Yayla Yolu', images: ['/mahmatli-koy-manzarasi.JPG'] },
-    { id: 4, caption: 'Köy Meydanı', images: ['/mahmatli-koy-manzarasi.JPG'] },
-    { id: 5, caption: 'Evlerden Görünüm', images: ['/mahmatli-koy-manzarasi.JPG'] },
-    { id: 6, caption: 'Doğal Yaşam', images: ['/mahmatli-koy-manzarasi.JPG'] },
+    { id: 3, caption: 'Yayla Yolu', images: ['IMAGE_URL_PLACEHOLDER_3'] },
+    { id: 4, caption: 'Köy Meydanı', images: ['IMAGE_URL_PLACEHOLDER_4'] },
+    { id: 5, caption: 'Evlerden Görünüm', images: ['IMAGE_URL_PLACEHOLDER_5'] },
+    { id: 6, caption: 'Doğal Yaşam', images: ['IMAGE_URL_PLACEHOLDER_6'] },
   ];
 
   const openLightbox = (images: string[]) => {
@@ -50,6 +51,14 @@ const Gallery = () => {
     }
   };
 
+  const handleImageLoad = (itemId: number) => {
+    setLoadingImages(prev => ({ ...prev, [itemId]: false }));
+  };
+
+  const setImageLoading = (itemId: number) => {
+    setLoadingImages(prev => ({ ...prev, [itemId]: true }));
+  };
+
   return (
     <>
       <section id="galeri" className="py-16 sm:py-20 bg-stone-50">
@@ -72,7 +81,19 @@ const Gallery = () => {
                 className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group"
                 onClick={() => openLightbox(item.images)}
               >
-                <div className="aspect-[4/3] bg-cover bg-center relative overflow-hidden group-hover:bg-gray-100" style={{ backgroundImage: `url('${item.images[0]}')` }}>
+                <div className="aspect-[4/3] bg-cover bg-center relative overflow-hidden group-hover:bg-gray-100">
+                  <img
+                    src={item.images[0]}
+                    alt={item.caption}
+                    className="w-full h-full object-cover"
+                    onLoad={() => handleImageLoad(item.id)}
+                    onLoadStart={() => setImageLoading(item.id)}
+                  />
+                  {loadingImages[item.id] !== false && (
+                    <div className="absolute inset-0 bg-gray-200/80 flex items-center justify-center">
+                      <Loader className="text-primary-700 animate-spin" size={40} />
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                     <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition-opacity" size={40} />
                   </div>
@@ -132,12 +153,19 @@ const Gallery = () => {
               </>
             )}
 
-            <div className="overflow-auto max-h-screen max-w-4xl">
+            <div className="overflow-auto max-h-screen max-w-4xl relative">
+              {loadingImages['lightbox'] && (
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20">
+                  <Loader className="text-white animate-spin" size={48} />
+                </div>
+              )}
               <img
                 src={selectedImages[currentImageIndex]}
                 alt="Gallery lightbox"
                 className="w-full h-auto transition-transform duration-300"
                 style={{ transform: `scale(${zoom})` }}
+                onLoad={() => setLoadingImages(prev => ({ ...prev, lightbox: false }))}
+                onLoadStart={() => setLoadingImages(prev => ({ ...prev, lightbox: true }))}
               />
             </div>
           </div>
