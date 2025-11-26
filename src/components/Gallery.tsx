@@ -2,12 +2,11 @@ import { Image } from 'lucide-react';
 
 const Gallery = () => {
   const galleryItems = [
-    { id: 1, caption: 'Köy Manzarası' },
-    { id: 2, caption: 'Kışın Mahmatlı' },
-    { id: 3, caption: 'Yayla Yolu' },
-    { id: 4, caption: 'Köy Meydanı' },
-    { id: 5, caption: 'Evlerden Görünüm' },
-    { id: 6, caption: 'Doğal Yaşam' },
+    { id: 1, caption: 'Köy Manzarası', images: ['/mahmatli-koyu-fotograf.jpg', '/mahmatli-koy-manzarasi.JPG', '/kelkit-mahmatli-koyu-foto.JPG', '/kelkit-mahmatli-koyu-panaroma.jpg' ] },
+    { id: 1, caption: 'Köy Manzarası', images: ['/mahmatli-koyu-fotograf.jpg', '/mahmatli-koy-manzarasi.JPG', '/kelkit-mahmatli-koyu-foto.JPG', '/kelkit-mahmatli-koyu-genis-aci.jpg' ] },
+    { id: 2, caption: 'Kışın Mahmatlı', images: ['/kisin-mahmatli-min.JPG', '/kisin-mahmatli-manzarasi.JPG'] },
+    { id: 3, caption: 'Dedenin Çayırı 4. Köprü', images: ['/mahmatli-koyu-fotograflari.JPG'] },
+    { id: 4, caption: 'Harmanda Tek Kale Futbol', images: ['/kelkit-mahmatli-koyu.JPG'] },
   ];
 
   return (
