@@ -1,20 +1,24 @@
-import { Image, X, ZoomIn } from 'lucide-react';
+import { Image, X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 
 const Gallery = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [zoom, setZoom] = useState(1);
+  const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const galleryItems = [
-    { id: 1, caption: 'Köy Manzarası' },
-    { id: 2, caption: 'Kışın Mahmatlı' },
-    { id: 3, caption: 'Yayla Yolu' },
-    { id: 4, caption: 'Köy Meydanı' },
-    { id: 5, caption: 'Evlerden Görünüm' },
-    { id: 6, caption: 'Doğal Yaşam' },
+    { id: 1, caption: 'Köy Manzarası', images: ['/mahmatli-koy-manzarasi.JPG'] },
+    { id: 2, caption: 'Kışın Mahmatlı', images: ['/kisin-mahmatli-min.JPG', '/kisin-mahmatli-manzarasi.JPG'] },
+    { id: 3, caption: 'Yayla Yolu', images: ['/mahmatli-koy-manzarasi.JPG'] },
+    { id: 4, caption: 'Köy Meydanı', images: ['/mahmatli-koy-manzarasi.JPG'] },
+    { id: 5, caption: 'Evlerden Görünüm', images: ['/mahmatli-koy-manzarasi.JPG'] },
+    { id: 6, caption: 'Doğal Yaşam', images: ['/mahmatli-koy-manzarasi.JPG'] },
   ];
 
-  const openLightbox = () => {
+  const openLightbox = (images: string[]) => {
+    setSelectedImages(images);
+    setCurrentImageIndex(0);
     setLightboxOpen(true);
     setZoom(1);
   };
@@ -22,10 +26,22 @@ const Gallery = () => {
   const closeLightbox = () => {
     setLightboxOpen(false);
     setZoom(1);
+    setSelectedImages([]);
+    setCurrentImageIndex(0);
   };
 
   const handleZoom = () => {
     setZoom(prev => (prev === 1 ? 2 : 1));
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex(prev => (prev + 1) % selectedImages.length);
+    setZoom(1);
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex(prev => (prev - 1 + selectedImages.length) % selectedImages.length);
+    setZoom(1);
   };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -54,9 +70,9 @@ const Gallery = () => {
               <div
                 key={item.id}
                 className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group"
-                onClick={openLightbox}
+                onClick={() => openLightbox(item.images)}
               >
-                <div className="aspect-[4/3] bg-cover bg-center relative overflow-hidden group-hover:bg-gray-100" style={{ backgroundImage: `url('/mahmatli-koy-manzarasi.JPG')` }}>
+                <div className="aspect-[4/3] bg-cover bg-center relative overflow-hidden group-hover:bg-gray-100" style={{ backgroundImage: `url('${item.images[0]}')` }}>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                     <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition-opacity" size={40} />
                   </div>
@@ -92,9 +108,33 @@ const Gallery = () => {
               <ZoomIn size={24} />
             </button>
 
+            {selectedImages.length > 1 && (
+              <>
+                <button
+                  onClick={handlePrevImage}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 text-white p-3 rounded-lg transition-colors backdrop-blur-sm"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+
+                <button
+                  onClick={handleNextImage}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 text-white p-3 rounded-lg transition-colors backdrop-blur-sm"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={24} />
+                </button>
+
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 bg-white/20 text-white px-4 py-2 rounded-lg backdrop-blur-sm text-sm">
+                  {currentImageIndex + 1} / {selectedImages.length}
+                </div>
+              </>
+            )}
+
             <div className="overflow-auto max-h-screen max-w-4xl">
               <img
-                src="/mahmatli-koy-manzarasi.JPG"
+                src={selectedImages[currentImageIndex]}
                 alt="Gallery lightbox"
                 className="w-full h-auto transition-transform duration-300"
                 style={{ transform: `scale(${zoom})` }}
