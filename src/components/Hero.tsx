@@ -16,23 +16,25 @@ const Hero = () => {
         backgroundImage: `url('/mahmatli-koyu.JPG')`
       }}
     >
-      <div className="absolute inset-0 bg-white/00 "></div>
+      <div className="absolute inset-0 bg-black/40"></div>
 
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6 text-center">
         <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-primary-400 rounded-full mb-6 sm:mb-8">
           <Mountain className="text-white" size={40} />
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
-          Mahmatlı Köyü'ne
-          <br />
-          <span className="text-primary-700">Hoş Geldiniz</span>
-        </h1>
+        <div className="bg-white/15 backdrop-blur-md rounded-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.7)' }}>
+            Mahmatlı Köyü'ne
+            <br />
+            <span className="text-primary-200">Hoş Geldiniz</span>
+          </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4">
-          Gümüşhane'nin Kelkit ilçesine bağlı, doğası ve insanı ile tanınan küçük ama samimi bir köy: Mahmatlı.
-          Hem köyde yaşayanlar hem de gurbetteki hemşerilerimiz için dijital bir buluşma noktası.
-        </p>
+          <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.7)' }}>
+            Gümüşhane'nin Kelkit ilçesine bağlı, doğası ve insanı ile tanınan küçük ama samimi bir köy: Mahmatlı.
+            Hem köyde yaşayanlar hem de gurbetteki hemşerilerimiz için dijital bir buluşma noktası.
+          </p>
+        </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
           <button
